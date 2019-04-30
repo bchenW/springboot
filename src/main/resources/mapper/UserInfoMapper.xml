@@ -109,4 +109,27 @@
             state = #{state,jdbcType=CHAR}
         where uid = #{uid,jdbcType=CHAR}
     </update>
+    
+    <select id="getRolesByUserName" parameterType="java.lang.String" resultType="String">
+    	SELECT role FROM sys_user_role sur 
+		LEFT JOIN sys_role sr ON sr.id = sur.role_id 
+		LEFT JOIN user_info ui ON ui.uid= sur.uid
+		WHERE ui.userName = #{userName}
+    </select>
+    
+    <select id="getPermissionsByUserName" parameterType="java.lang.String" resultType="String">
+    	SELECT permission FROM sys_role_permission srp
+				LEFT JOIN sys_role sr ON sr.`id` = srp.role_id
+				LEFT JOIN sys_user_role sur ON sur.role_id=id
+				LEFT JOIN user_info ui ON ui.`uid`= sur.`uid`
+				LEFT JOIN sys_permission sp ON sp.`id` = srp.permission_id
+				WHERE ui.`userName` = #{userName}
+    </select>
+     <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from user_info
+        where userName = #{userName}
+    </select>
+    
 </mapper>

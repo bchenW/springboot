@@ -64,7 +64,7 @@ public class shiroTest {
 		//主题提交认证请求
 		SecurityUtils.setSecurityManager(defaultSecurityManager);
 		Subject subject = SecurityUtils.getSubject();
-		UsernamePasswordToken token = new UsernamePasswordToken("wy","1234");
+		UsernamePasswordToken token = new UsernamePasswordToken("王碧晨","1234");
 		subject.login(token);	//登录
 		
 		subject.checkRole("admin");

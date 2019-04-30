@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 
  * 
- * @author wcyong
+ * @author wangyu
  * 
  * @date 2019-03-25
  */
@@ -20,7 +20,7 @@ public class UserInfo implements Serializable{
 
     private String salt;
 
-    private String state;
+    private String state;	//是否禁用
 
     public String getUid() {
         return uid;
@@ -69,4 +69,22 @@ public class UserInfo implements Serializable{
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
     }
+
+	public UserInfo(String uid, String username, String name, String password, String salt, String state) {
+		super();
+		this.uid = uid;
+		this.username = username;
+		this.name = name;
+		this.password = password;
+		this.salt = salt;
+		this.state = state;
+	}
+
+	public UserInfo() {
+		super();
+	}
+	
+	
+    
+    
 }
